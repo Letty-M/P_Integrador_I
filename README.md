@@ -68,6 +68,7 @@ P_Integrador_I/
 ├── README.md                # 📄 Documentação do projeto
 └── fotos e codigo.docx      # 📎 Documento auxiliar com prints e código
 
+```bash
 ---
 
 ## 👩‍💻 Integrantes do Grupo
