@@ -45,29 +45,28 @@ Projeto desenvolvido como parte do **Projeto Integrador I** do curso de **Engenh
 
 ---
 
-## 🧩 Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
+```bash
 P_Integrador_I/
-├── backend/                 # Lógica do servidor e API
-
-│   ├── server.js            # Arquivo principal da aplicação
-│   ├── database.js          # Configuração de conexão com o banco de dados
-│   ├── init-database.js     # Script de inicialização das tabelas
+├── backend/                 # 🧠 Lógica do servidor e API
+│   ├── server.js            # Arquivo principal da aplicação (ponto de entrada)
+│   ├── database.js          # Configuração da conexão com o banco MySQL
+│   ├── init-database.js     # Script de criação e inicialização das tabelas
 │   ├── test_connection.js   # Teste de conexão com o banco
-│   ├── package.json         # Dependências e scripts do Node.js
-│   └── package-lock.json    # Lockfile de dependências
-
-
-├── frontend/                # Interface do sistema
-│   ├── index.html           # Página principal
-│   ├── style.css            # Estilos da aplicação
+│   ├── package.json         # Dependências do Node.js
+│   └── package-lock.json    # Lockfile das dependências
+│
+├── frontend/                # 💅 Interface da aplicação
+│   ├── index.html           # Página principal do sistema
+│   ├── style.css            # Estilização visual
 │   └── script.js            # Lógica de interação com a API
-
-
-├── .vscode/                 # Configurações do VS Code (opcional)
-│   └── settings.json
-├── README.md                # Documentação do projeto (você está aqui!)
-└── fotos e codigo.docx      # Documento de apoio do projeto
+│
+├── .vscode/                 # ⚙️ Configurações de ambiente (opcional)
+│   └── settings.json        # Preferências do VS Code para o projeto
+│
+├── README.md                # 📄 Documentação do projeto
+└── fotos e codigo.docx      # 📎 Documento auxiliar com prints e código
 
 ---
 
