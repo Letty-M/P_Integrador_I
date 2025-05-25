@@ -90,8 +90,7 @@ P_Integrador_I/
 ├── .vscode/                 # ⚙️ Configurações de ambiente (opcional)
 │   └── settings.json        # Preferências do VS Code para o projeto
 │
-├── README.md                # 📄 Documentação do projeto
-└── fotos e codigo.docx      # 📎 Documento auxiliar com prints e código
+└── README.md                # 📄 Documentação do projeto
 
 
 
