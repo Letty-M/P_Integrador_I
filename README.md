@@ -47,3 +47,49 @@ Projeto desenvolvido como parte do **Projeto Integrador I** do curso de **Engenh
 
 ## 🧩 Estrutura do Projeto
 
+P_Integrador_I/
+├── backend/                 # Lógica do servidor e API
+│   ├── server.js            # Arquivo principal da aplicação
+│   ├── database.js          # Configuração de conexão com o banco de dados
+│   ├── init-database.js     # Script de inicialização das tabelas
+│   ├── test_connection.js   # Teste de conexão com o banco
+│   ├── package.json         # Dependências e scripts do Node.js
+│   └── package-lock.json    # Lockfile de dependências
+│
+├── frontend/                # Interface do sistema
+│   ├── index.html           # Página principal
+│   ├── style.css            # Estilos da aplicação
+│   └── script.js            # Lógica de interação com a API
+│
+├── .vscode/                 # Configurações do VS Code (opcional)
+│   └── settings.json
+│
+├── README.md                # Documentação do projeto (você está aqui!)
+└── fotos e codigo.docx      # Documento de apoio do projeto
+
+---
+
+## 👩‍💻 Integrantes do Grupo
+
+- Kenya Aparecida Alves  
+- Letícia Vitória Lemes Moreira  
+- Licínio das Neves Neto  
+- Wellington Fabrício do Amaral Olah
+
+---
+
+## 📽️ Apresentação em Vídeo
+
+Confira o vídeo completo da apresentação do projeto no YouTube:  
+🔗 [https://youtu.be/lk6ijeoQR8M](https://youtu.be/lk6ijeoQR8M)
+
+---
+
+## 📚 Projeto Acadêmico
+
+Desenvolvido para o Projeto Integrador I – UNIVESP  
+Curso: Engenharia de Computação  
+Ano: 2025  
+Orientador: Prof. Filipe Cordeiro de Souza Algatão
+
+
