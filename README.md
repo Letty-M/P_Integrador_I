@@ -44,6 +44,31 @@ Projeto desenvolvido como parte do **Projeto Integrador I** do curso de **Engenh
 - Visual Studio Code
 
 ---
+## 👩‍💻 Integrantes do Grupo
+
+- Kenya Aparecida Alves  
+- Letícia Vitória Lemes Moreira  
+- Licínio das Neves Neto  
+- Wellington Fabrício do Amaral Olah
+
+---
+
+## 📽️ Apresentação em Vídeo
+
+Confira o vídeo completo da apresentação do projeto no YouTube:  
+🔗 [https://youtu.be/lk6ijeoQR8M](https://youtu.be/lk6ijeoQR8M)
+
+---
+
+## 📚 Projeto Acadêmico
+
+Desenvolvido para o Projeto Integrador I – UNIVESP  
+Curso: Engenharia de Computação  
+Ano: 2025  
+Orientador: Prof. Filipe Cordeiro de Souza Algatão
+
+
+---
 
 ## 📁 Estrutura do Projeto
 
@@ -68,29 +93,5 @@ P_Integrador_I/
 ├── README.md                # 📄 Documentação do projeto
 └── fotos e codigo.docx      # 📎 Documento auxiliar com prints e código
 
----
-
-## 👩‍💻 Integrantes do Grupo
-
-- Kenya Aparecida Alves  
-- Letícia Vitória Lemes Moreira  
-- Licínio das Neves Neto  
-- Wellington Fabrício do Amaral Olah
-
----
-
-## 📽️ Apresentação em Vídeo
-
-Confira o vídeo completo da apresentação do projeto no YouTube:  
-🔗 [https://youtu.be/lk6ijeoQR8M](https://youtu.be/lk6ijeoQR8M)
-
----
-
-## 📚 Projeto Acadêmico
-
-Desenvolvido para o Projeto Integrador I – UNIVESP  
-Curso: Engenharia de Computação  
-Ano: 2025  
-Orientador: Prof. Filipe Cordeiro de Souza Algatão
 
 
