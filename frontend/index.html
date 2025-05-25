@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio - Agendamentos</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' />
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+<!-- ============================== HERO SECTION ============================== -->
+<div class="hero-section">
+  <div class="hero-overlay">
+    <div class="hero-text-container">
+      <!-- Se você tiver um logo PNG com fundo transparente para sobrepor a imagem de fundo da hero: -->
+      
+      <h1 class="hero-title">Studio Agenda</h1>
+      <p class="hero-subtitle">Agendamentos e Gestão para seu Negócio de Beleza</p>
+      <!-- Pode adicionar um botão Call to Action aqui se desejar -->
+      <!-- <button class="hero-cta-button" onclick="document.getElementById('agendamentoTab').scrollIntoView({behavior: 'smooth'}); openTab(null, 'agendamentoTab');">Agendar Agora</button> -->
+    </div>
+  </div>
+</div>
+
+<!-- ============================== HEADER PRINCIPAL (STICKY) ============================== -->
+<!--<header class="main-header-sticky">-->
+  <!-- <h1><i class="fas fa-tools"></i> Painel de Controle</h1> -->
+  <!--- </header> -->
+
+<!-- ============================== NAVEGAÇÃO POR ABAS (STICKY) ============================== -->
+<nav>
+  <button class="tablink active" onclick="openTab(event, 'agendamentoTab')"><i class="fas fa-calendar-plus"></i> Novo Agendamento</button>
+  <button class="tablink" onclick="openTab(event, 'agendaDataTab')"><i class="fas fa-calendar-alt"></i> Minha Agenda</button>
+  <button class="tablink" onclick="openTab(event, 'clientesTab')"><i class="fas fa-users"></i> Clientes</button>
+  <button class="tablink" onclick="openTab(event, 'profissionaisTab')"><i class="fas fa-user-tie"></i> Profissionais</button>
+  <button class="tablink" onclick="openTab(event, 'servicosTab')"><i class="fas fa-concierge-bell"></i> Serviços</button>
+</nav>
+
+<!-- ============================== CONTEÚDO PRINCIPAL DAS ABAS ============================== -->
+<main class="main-content-wrapper"> <!-- Wrapper para o conteúdo das abas -->
+
+    <!-- ABA NOVO AGENDAMENTO -->
+    <div id="agendamentoTab" class="tab-content active">
+      <section class="form-section highlight-form">
+        <h2><i class="fas fa-calendar-plus"></i> Criar Novo Agendamento</h2>
+        <form id="form-agendamento">
+          <div class="form-grid">
+            <div class="form-group autocomplete-container">
+                <label for="cliente-autocomplete">Cliente:</label>
+                <input type="text" id="cliente-autocomplete" name="cliente" required placeholder="Digite o nome do cliente...">
+                <input type="hidden" id="id-cliente-hidden">
+                <small id="cliente-feedback" class="form-feedback error-feedback">Cliente não encontrado. Cadastre na aba 'Clientes'.</small>
+            </div>
+            <div class="form-group">
+                <label for="servico-select-agendamento">Serviço:</label>
+                <select id="servico-select-agendamento" required>
+                    <option value="">-- Selecione um Serviço --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="profissional-select-agendamento">Profissional:</label>
+                <select id="profissional-select-agendamento" required>
+                    <option value="">-- Selecione um Serviço Primeiro --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="data-horario">Data e Hora:</label>
+                <input type="datetime-local" id="data-horario" required>
+            </div>
+          </div>
+          <button type="submit" class="submit primary-action full-width-mobile"><i class="fas fa-check"></i> Agendar Agora</button>
+        </form>
+      </section>
+
+      <section class="table-section">
+        <h2><i class="fas fa-list-alt"></i> Próximos Agendamentos</h2>
+        <input type="text" id="filtro-tabela-agendamentos" class="table-filter-input" placeholder="Buscar agendamento...">
+        <table>
+          <thead> <tr> <th>Data</th> <th>Cliente</th> <th>Serviço</th> <th>Profissional</th> <th>Status</th> <th>Ações</th> </tr> </thead>
+          <tbody id="tabela-agendamentos"> <tr><td colspan="6" class="text-center">Carregando...</td></tr> </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- ABA MINHA AGENDA (CALENDÁRIO) -->
+    <div id="agendaDataTab" class="tab-content">
+      <section class="calendar-section">
+          <h2><i class="fas fa-calendar-week"></i> Minha Agenda Semanal</h2>
+          <div class="filtros-calendario">
+              <div class="form-group"> <label for="filtro-servico-calendario">Serviço:</label> <select id="filtro-servico-calendario"><option value="">Todos</option></select> </div>
+              <div class="form-group"> <label for="filtro-profissional-calendario">Profissional:</label> <select id="filtro-profissional-calendario"><option value="">Todos</option></select> </div>
+          </div>
+          <div id='calendar' class="calendar-container"></div>
+      </section>
+    </div>
+
+    <!-- ABA CLIENTES -->
+    <div id="clientesTab" class="tab-content">
+      <section class="form-section highlight-form">
+        <h2 id="titulo-form-cliente"><i class="fas fa-user-plus"></i> Adicionar Novo Cliente</h2>
+        <form id="form-cliente">
+          <div class="form-grid">
+            <div class="form-group"> <label for="nome-cliente">Nome:</label> <input type="text" id="nome-cliente" required> </div>
+            <div class="form-group"> <label for="email-cliente">Email:</label> <input type="email" id="email-cliente"> </div>
+            <div class="form-group"> <label for="telefone-cliente">Telefone:</label> <input type="tel" id="telefone-cliente"> </div>
+          </div>
+          <input type="hidden" id="edit-cliente-id">
+          <div class="form-actions">
+            <button type="submit" class="submit primary-action" id="btn-salvar-cliente"><i class="fas fa-save"></i> Salvar Cliente</button>
+            <button type="button" class="action-button cancel-edit" id="btn-cancelar-edicao-cliente" style="display:none;">Cancelar</button>
+          </div>
+        </form>
+      </section>
+      <section class="table-section">
+        <h2><i class="fas fa-users"></i> Clientes Cadastrados</h2>
+        <input type="text" id="filtro-tabela-clientes" class="table-filter-input" placeholder="Buscar cliente...">
+        <table>
+          <thead> <tr> <th>Nome</th> <th>Email</th> <th>Telefone</th> <th>Ações</th> </tr> </thead>
+          <tbody id="tabela-clientes"> <tr><td colspan="4" class="text-center">Carregando...</td></tr> </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- ABA PROFISSIONAIS -->
+    <div id="profissionaisTab" class="tab-content">
+      <section class="form-section highlight-form">
+        <h2 id="titulo-form-profissional"><i class="fas fa-user-plus"></i> Adicionar Novo Profissional</h2>
+        <form id="form-profissional">
+            <div class="form-group"> <label for="nome-profissional">Nome:</label> <input type="text" id="nome-profissional" required> </div>
+            <div class="form-group"> <label>Serviços que realiza:</label> <div id="checkbox-servicos-container"><p class="text-center">Carregando...</p></div> </div>
+            <input type="hidden" id="edit-profissional-id">
+            <div class="form-actions">
+              <button type="submit" class="submit primary-action" id="btn-salvar-profissional"><i class="fas fa-save"></i> Salvar</button>
+              <button type="button" class="action-button cancel-edit" id="btn-cancelar-edicao-profissional" style="display:none;">Cancelar</button>
+            </div>
+        </form>
+      </section>
+      <section class="table-section">
+        <h2><i class="fas fa-user-tie"></i> Profissionais Cadastrados</h2>
+        <input type="text" id="filtro-tabela-profissionais" class="table-filter-input" placeholder="Buscar profissional...">
+        <table>
+          <thead> <tr> <th>Nome</th> <th>Serviços Associados</th> <th>Ações</th> </tr> </thead>
+          <tbody id="tabela-profissionais"> <tr><td colspan="3" class="text-center">Carregando...</td></tr> </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- ABA SERVIÇOS -->
+    <div id="servicosTab" class="tab-content">
+      <section class="form-section highlight-form">
+        <h2 id="titulo-form-servico"><i class="fas fa-plus-circle"></i> Adicionar Novo Serviço</h2>
+        <form id="form-servico">
+          <div class="form-grid">
+            <div class="form-group"> <label for="nome-servico">Nome:</label> <input type="text" id="nome-servico" required> </div>
+            <div class="form-group"> <label for="preco-servico">Preço (R$):</label> <input type="number" id="preco-servico" step="0.01" min="0" required> </div>
+            <div class="form-group"> <label for="duracao-servico">Duração (min):</label> <input type="number" id="duracao-servico" step="5" min="5"> </div>
+          </div>
+          <input type="hidden" id="edit-servico-id">
+          <div class="form-actions">
+            <button type="submit" class="submit primary-action" id="btn-salvar-servico"><i class="fas fa-save"></i> Salvar</button>
+            <button type="button" class="action-button cancel-edit" id="btn-cancelar-edicao-servico" style="display:none;">Cancelar</button>
+          </div>
+        </form>
+      </section>
+      <section class="table-section">
+        <h2><i class="fas fa-clipboard-list"></i> Serviços Cadastrados</h2>
+        <input type="text" id="filtro-tabela-servicos" class="table-filter-input" placeholder="Buscar serviço...">
+        <table>
+          <thead> <tr> <th>Nome</th> <th>Preço (R$)</th> <th>Duração (min)</th> <th>Ações</th> </tr> </thead>
+          <tbody id="tabela-servicos"> <tr><td colspan="4" class="text-center">Carregando...</td></tr> </tbody>
+        </table>
+      </section>
+    </div>
+
+</main> <!-- Fim do main-content-wrapper -->
+
+<!-- Container para mensagens Toast -->
+<div id="toast-container"></div>
+
+<!-- Scripts JS -->
+
+<script src="script.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+</body>
+</html>

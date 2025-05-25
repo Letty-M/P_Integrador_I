@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda por Data</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f7f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #4cb89c;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="date"] {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #e7f7f2;
+    }
+
+    .btn-voltar {
+      margin-top: 30px;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4cb89c;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .btn-voltar:hover {
+      background-color: #3aa88b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2><i class="fa-solid fa-calendar"></i> Visualizar Agendamentos por Data</h2>
+    <label for="filtro-data">Selecione uma data:</label>
+    <input type="date" id="filtro-data" />
+
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Serviço</th>
+          <th>Profissional</th>
+          <th>Hora</th>
+        </tr>
+      </thead>
+      <tbody id="agenda-tabela">
+        <tr><td colspan="4">Nenhuma data selecionada</td></tr>
+      </tbody>
+    </table>
+
+    <a href="index.html" class="btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar para Agenda</a>
+  </div>
+
+  <script>
+    document.getElementById('filtro-data').addEventListener('change', function () {
+      const dataSelecionada = this.value;
+
+      fetch('http://localhost:5000/agendamentos')
+        .then(res => res.json())
+        .then(data => {
+          const tabela = document.getElementById('agenda-tabela');
+          tabela.innerHTML = '';
+
+          const agendamentosDoDia = data.filter(ag => ag.data_horario.startsWith(dataSelecionada));
+
+          if (agendamentosDoDia.length === 0) {
+            tabela.innerHTML = '<tr><td colspan="4">Nenhum agendamento para esta data.</td></tr>';
+            return;
+          }
+
+          agendamentosDoDia.forEach(ag => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${ag.cliente}</td>
+              <td>${ag.servico}</td>
+              <td>${ag.profissional || '-'}</td>
+              <td>${new Date(ag.data_horario).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</td>
+            `;
+            tabela.appendChild(tr);
+          });
+        })
+        .catch(err => {
+          console.error('Erro ao carregar agendamentos:', err);
+        });
+    });
+  </script>
+</body>
+</html>
